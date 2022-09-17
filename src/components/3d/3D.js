@@ -14,12 +14,8 @@ export default function C3D() {
       let rad = 0;
       let cubeRotation = () => {
         for (; rad < 360; rad = rad + 1) {
-          const newCubeCoord = cubeCord.map((coords) => {
-            return coords.map((coord) => {
-              return axisRotationCord(coord, rad, rad, 0); //!XYZ rotation
-              /*  return arbitratyAxsisRotationCord(coord, [100, 100, 100], rad); */
-            });
-          });
+          const newCubeCoord = axisRotationCord(cubeCord, rad, rad, 0); //!XYZ rotation
+          /*  return arbitratyAxsisRotationCord(coord, [100, 100, 100], rad); */
 
           setTimeout(() => {
             currentCubeFaces = drawCube(currentCubeFaces, toVectors(newCubeCoord), colors);

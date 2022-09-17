@@ -1,8 +1,7 @@
 const PI = Math.PI;
 
-export default function axisRotationCord(vector, angleX, angleY, angleZ) {
-  //!xyz rotation
-  const [X, Y, Z] = [vector[0], vector[1], vector[2]];
+function GetNewCoord(coords, angleX, angleY, angleZ) {
+  const [X, Y, Z] = [coords[0], coords[1], coords[2]];
   const radX = (PI * angleX) / 180,
     radY = (PI * angleY) / 180,
     radZ = (PI * angleZ) / 180,
@@ -17,6 +16,15 @@ export default function axisRotationCord(vector, angleX, angleY, angleZ) {
     nZ = X * (sinX * sinZ - cosX * sinY * cosZ) + Y * (cosX * sinY * sinZ + sinX * cosZ) + cosX * cosY * Z;
 
   return [nX, nY, nZ];
+}
+
+export default function axisRotationCord(figureCoords, angleX, angleY, angleZ) {
+  //!xyz rotation
+  return figureCoords.map((vertexCoords) => {
+    return vertexCoords.map((coords) => {
+      return GetNewCoord(coords, angleX, angleY, angleZ);
+    });
+  });
 }
 /*               const [x, y, z] = [coord[0], coord[1], coord[2]]; */
 /*           const newX = x, //!x rotation
